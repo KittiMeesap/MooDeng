@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 [System.Serializable]
 public struct PlayerData
@@ -18,25 +17,22 @@ public struct PlayerData
         this.playerTime = playerTime;
         this.profileSprite = profileSprite;
     }
-
 }
-
-
 
 public class RankData : MonoBehaviour
 {
     public PlayerData playerData;
 
-    [SerializeField] private Image imgPlayer; 
+    [SerializeField] private Image imgPlayer;
     [SerializeField] private TMP_Text rankPlayerText;
-    [SerializeField] private TMP_Text namePlayerText; 
-    [SerializeField] private TMP_Text timeText; 
+    [SerializeField] private TMP_Text namePlayerText;
+    [SerializeField] private TMP_Text timeText;
 
     public void UpdateData()
     {
-        imgPlayer.sprite = playerData.profileSprite;
+        if (imgPlayer != null) imgPlayer.sprite = playerData.profileSprite;
         rankPlayerText.text = playerData.rankNumber.ToString();
         namePlayerText.text = playerData.playerName;
-        timeText.text = playerData.playerTime.ToString("00:00");
+        timeText.text = playerData.playerTime.ToString("F2");
     }
 }

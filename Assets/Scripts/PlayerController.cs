@@ -44,8 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         // ตรวจสอบว่าผู้เล่นแตะพื้นหรือไม่
         isGroundedBool = IsGrounded();
-        Debug.Log($"สถานะการสัมผัสพื้น: {isGroundedBool}");
-
         if (isGroundedBool)
         {
             canDoubleJump = true; // ตั้งค่ากระโดดสองครั้งได้อีกครั้งเมื่อสัมผัสพื้น
@@ -111,8 +109,6 @@ public class PlayerController : MonoBehaviour
 
         Collider2D hit = Physics2D.OverlapCircle(position, radius, groundLayer);
         bool isGrounded = hit != null;
-
-        Debug.Log($"IsGrounded with CircleCast: {isGrounded}, Collider: {(hit != null ? hit.name : "None")}");
         return isGrounded;
     }
 

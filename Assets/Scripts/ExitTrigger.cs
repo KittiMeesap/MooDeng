@@ -1,50 +1,47 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ExitTrigger : MonoBehaviour
 {
-    //public Animator anim;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
-            UnlockNewLevel();
-            StartCoroutine("LevelExit");
+            if (GameManager.instance.CheckTotalCoins())
+            {
+                UnlockNewLevel();
+                StartCoroutine(LevelExit());
+            }
+            else
+            {
+                Debug.Log("ยังเก็บเหรียญไม่ครบตามที่กำหนด");
+            }
         }
     }
 
     IEnumerator LevelExit()
     {
-        //anim.SetTrigger("Exit");
-        yield return new WaitForSeconds(0.1f);
-
         UIManager.instance.fadeToBlack = true;
+        yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(2f);
-        // Do something after flag anim
-        GameManager.instance.LevelComplete();
+        GameManager.instance.LevelComplete(); // บันทึกข้อมูลและจบเลเวล
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-
             FindObjectOfType<GameManager>().OnPlayerFinish();
         }
     }
 
     void UnlockNewLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex>=PlayerPrefs.GetInt("ReachedIndex"))
+        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
         {
             PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
-            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel",1) + 1);
+            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
             PlayerPrefs.Save();
         }
-
     }
-
 }

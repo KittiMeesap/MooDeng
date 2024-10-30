@@ -22,21 +22,7 @@ public class pickup : MonoBehaviour
                 Destroy(this.gameObject,0.2f);
                 
             }
-            
-        }
-
-        if (pt == pickupType.gem)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                GameManager.instance.IncrementGemCount();
-            
-                Instantiate(PickupEffect, transform.position, Quaternion.identity);
-
-                Destroy(this.gameObject, 0.2f);
-
-            }
-
+           
         }
     }
 }

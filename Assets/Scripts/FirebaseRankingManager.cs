@@ -13,8 +13,10 @@ public struct Ranking
 
 public class FirebaseRankingManager : MonoBehaviour
 {
-    public const string url = "https://moodengleaderboard-default-rtdb.asia-southeast1.firebasedatabase.app";
-    public const string secret = "2S8Q9HGudjIZuK1nmJJo56249y2XB51sFCxRESgx";
+    public static FirebaseRankingManager instance;
+
+    public const string url = "https://moodengadventure-default-rtdb.asia-southeast1.firebasedatabase.app";
+    public const string secret = "AIzaSyCa734MabQp-CNWa3wmJ5b8un6HyH21XzI";
 
     [Header("Main")]
     public RankUIManager rankUIManager;
@@ -24,9 +26,35 @@ public class FirebaseRankingManager : MonoBehaviour
     public PlayerData currentPlayerData;
     private List<PlayerData> sortPlayerDatas = new List<PlayerData>();
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
+    #region บันทึกคะแนนของผู้เล่นตามด่าน
 
-    #region Test
+    public void SavePlayerScore(string playerName, float playerTime, string levelID)
+    {
+        PlayerData newPlayerData = new PlayerData
+        {
+            playerName = playerName,
+            playerTime = playerTime
+        };
+
+        // ระบุ URL ให้บันทึกตาม levelID
+        string saveUrl = $"{url}/ranking/{levelID}/playerDatas.json?auth={secret}";
+        RestClient.Put(saveUrl, newPlayerData).Then(response =>
+        {
+            Debug.Log($"บันทึกข้อมูลของผู้เล่นสำเร็จสำหรับด่าน {levelID}");
+        }).Catch(error =>
+        {
+            Debug.Log("เกิดข้อผิดพลาดในการบันทึกข้อมูลของผู้เล่น: " + error.Message);
+        });
+    }
+
+    #endregion
+
+    #region ฟังก์ชันทดสอบการบันทึกและดึงข้อมูล
 
     [Header("Test")]
     public int testNum;
@@ -113,22 +141,16 @@ public class FirebaseRankingManager : MonoBehaviour
 
     #endregion
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
-        //TestSetData();
-        //TestSetData2();
-        //TestGetData();
-        //TestGetData2();
-        ReloadSortingData();
+        ReloadSortingData("Level1"); // ตัวอย่างการโหลดข้อมูลสำหรับ Level 1
     }
 
     [ContextMenu("Set Local Data To Database")]
-    public void SetLocalDataToDatabase()
+    public void SetLocalDataToDatabase(string levelID)
     {
-        string urlData = $"{url}/ranking.json?auth={secret}";
+        string urlData = $"{url}/ranking/{levelID}.json?auth={secret}";
         RestClient.Put<Ranking>(urlData, ranking).Then(response =>
         {
             Debug.Log("Upload Data Complete");
@@ -145,13 +167,12 @@ public class FirebaseRankingManager : MonoBehaviour
         for (int i = 0; i < sortRankPlayers.Count; i++)
         {
             PlayerData changedRankNum = sortRankPlayers[i];
-            changedRankNum.rankNumber = i + 1; // อัปเดตหมายเลขลำดับ
+            changedRankNum.rankNumber = i + 1;
 
             sortRankPlayers[i] = changedRankNum;
         }
 
         ranking.playerDatas = sortRankPlayers;
-
     }
 
     public void FindYourDataInRanking()
@@ -164,9 +185,9 @@ public class FirebaseRankingManager : MonoBehaviour
         rankUIManager.yourRankData.UpdateData();
     }
 
-    public void ReloadSortingData()
+    public void ReloadSortingData(string levelID)
     {
-        string urlData = $"{url}/ranking/playerDatas.json?auth={secret}";
+        string urlData = $"{url}/ranking/{levelID}/playerDatas.json?auth={secret}";
 
         RestClient.Get(urlData).Then(response =>
         {
@@ -185,7 +206,7 @@ public class FirebaseRankingManager : MonoBehaviour
             }
             CalculateRankFromScore();
 
-            string urlPlayerData = $"{url}/ranking/.json?auth={secret}";
+            string urlPlayerData = $"{url}/ranking/{levelID}.json?auth={secret}";
 
             RestClient.Put<Ranking>(urlPlayerData, ranking).Then(response =>
             {
@@ -197,15 +218,15 @@ public class FirebaseRankingManager : MonoBehaviour
             {
                 Debug.Log("Error on set to server");
             });
-        }).Catch(Error =>
+        }).Catch(error =>
         {
             Debug.Log("Error to get data from server");
         });
     }
 
-    public void AddDataWithSorting()
+    public void AddDataWithSorting(string levelID)
     {
-        string urlData = $"{url}/ranking/playerDatas.json?auth={secret}";
+        string urlData = $"{url}/ranking/{levelID}/playerDatas.json?auth={secret}";
 
         RestClient.Get(urlData).Then(response =>
         {
@@ -238,7 +259,7 @@ public class FirebaseRankingManager : MonoBehaviour
 
             CalculateRankFromScore();
 
-            string urlPlayerData = $"{url}/ranking/.json?auth={secret}";
+            string urlPlayerData = $"{url}/ranking/{levelID}.json?auth={secret}";
 
             RestClient.Put<Ranking>(urlPlayerData, ranking).Then(response =>
             {
@@ -254,11 +275,5 @@ public class FirebaseRankingManager : MonoBehaviour
         {
             Debug.Log("Error to get data from server");
         });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
