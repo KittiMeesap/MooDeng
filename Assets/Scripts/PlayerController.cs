@@ -1,14 +1,10 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
 
 public class PlayerController : MonoBehaviour
 {
-
     private PlayerInput playerInput;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
@@ -21,9 +17,6 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump = false;
 
     public Animator playeranim;
-
-   
-
     private float moveX;
     public bool isPaused = false;
 
@@ -31,19 +24,9 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem.EmissionModule footEmissions;
 
     public ParticleSystem ImpactEffect;
-    private bool wasonGround;
+    private bool wasOnGround;
 
-
-   // public GameObject projectile;
-   // public Transform firePoint;
-
-    public float fireRate = 0.5f; // Time between each shot
-
-
-    
-
-
-
+    public float fireRate = 0.5f;
 
     private void Start()
     {
@@ -55,23 +38,22 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("PlayerInput ไม่ได้ถูกกำหนดค่า!");
         }
-
-
     }
 
     private void Update()
     {
+        // ตรวจสอบว่าผู้เล่นแตะพื้นหรือไม่
         isGroundedBool = IsGrounded();
+        Debug.Log($"สถานะการสัมผัสพื้น: {isGroundedBool}");
 
         if (isGroundedBool)
         {
-            canDoubleJump = true; // Reset double jump when grounded
-
+            canDoubleJump = true; // ตั้งค่ากระโดดสองครั้งได้อีกครั้งเมื่อสัมผัสพื้น
             moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
-
 
             if (playerInput.actions["Jump"].triggered)
             {
+                Debug.Log("ผู้เล่นกระโดดจากพื้น");
                 Jump(jumpForce);
             }
         }
@@ -79,19 +61,12 @@ public class PlayerController : MonoBehaviour
         {
             if (canDoubleJump && playerInput.actions["Jump"].triggered)
             {
+                Debug.Log("ผู้เล่นกระโดดสองครั้ง");
                 Jump(doubleJumpForce);
-                canDoubleJump = false; // Disable double jump until grounded again
+                canDoubleJump = false; // ปิดการกระโดดสองครั้งจนกว่าจะสัมผัสพื้นอีกครั้ง
             }
         }
 
-        /*if (!isPaused)
-        {
-            // Calculate rotation angle based on mouse position
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 lookDirection = mousePosition - transform.position;
-            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-
-        }*/
         SetAnimations();
 
         if (moveX != 0)
@@ -99,75 +74,77 @@ public class PlayerController : MonoBehaviour
             FlipSprite(moveX);
         }
 
-        //impactEffect
-
-        if(!wasonGround && isGroundedBool)
+        // ตั้งค่าผลกระทบเมื่อผู้เล่นสัมผัสพื้นหลังจากอยู่ในอากาศ
+        if (!wasOnGround && isGroundedBool)
         {
             ImpactEffect.gameObject.SetActive(true);
             ImpactEffect.Stop();
-            ImpactEffect.transform.position = new Vector2(footsteps.transform.position.x,footsteps.transform.position.y-0.2f);
+            ImpactEffect.transform.position = new Vector2(footsteps.transform.position.x, footsteps.transform.position.y - 0.2f);
             ImpactEffect.Play();
         }
 
-        wasonGround = isGroundedBool;
-
-        
-    }
-    public void SetAnimations()
-    {
-        if (moveX != 0 && isGroundedBool)
-        {
-            playeranim.SetBool("run", true);
-            footEmissions.rateOverTime= 35f;
-        }
-        else
-        {
-            playeranim.SetBool("run",false);
-            footEmissions.rateOverTime = 0f;
-        }
-
-       
+        wasOnGround = isGroundedBool;
     }
 
-    private void FlipSprite(float direction)
-    {
-        if (direction > 0)
-        {
-            // Moving right, flip sprite to the right
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (direction < 0)
-        {
-            // Moving left, flip sprite to the left
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }
     private void FixedUpdate()
     {
+        // รับค่าการเคลื่อนที่ทางซ้ายและขวาจาก PlayerInput
         moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
-
-
-
         rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
     }
 
     private void Jump(float jumpForce)
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0); // Zero out vertical velocity
+        // รีเซ็ตความเร็วแนวตั้งก่อนการกระโดด
+        rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         playeranim.SetTrigger("jump");
     }
 
     private bool IsGrounded()
     {
-        float rayLength = 0.25f;
-        Vector2 rayOrigin = new Vector2(groundCheck.transform.position.x, groundCheck.transform.position.y - 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, groundLayer);
-        return hit.collider != null;
+        float radius = 0.15f; // รัศมีของวงกลม
+        Vector2 position = new Vector2(groundCheck.position.x, groundCheck.position.y - 0.1f);
+
+        // วาดเส้นให้เห็นใน Scene เพื่อช่วย Debug
+        Debug.DrawRay(position, Vector2.down * radius, Color.red);
+
+        Collider2D hit = Physics2D.OverlapCircle(position, radius, groundLayer);
+        bool isGrounded = hit != null;
+
+        Debug.Log($"IsGrounded with CircleCast: {isGrounded}, Collider: {(hit != null ? hit.name : "None")}");
+        return isGrounded;
     }
+
+    public void SetAnimations()
+    {
+        if (moveX != 0 && isGroundedBool)
+        {
+            playeranim.SetBool("run", true);
+            footEmissions.rateOverTime = 35f;
+        }
+        else
+        {
+            playeranim.SetBool("run", false);
+            footEmissions.rateOverTime = 0f;
+        }
+    }
+
+    private void FlipSprite(float direction)
+    {
+        if (direction > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (direction < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "killzone")
+        if (collision.gameObject.tag == "killzone")
         {
             GameManager.instance.Death();
         }
