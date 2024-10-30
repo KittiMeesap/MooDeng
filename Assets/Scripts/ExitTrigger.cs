@@ -10,6 +10,7 @@ public class ExitTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            UnlockNewLevel();
             StartCoroutine("LevelExit");
         }
     }
@@ -30,8 +31,20 @@ public class ExitTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+
             FindObjectOfType<GameManager>().OnPlayerFinish();
         }
+    }
+
+    void UnlockNewLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex>=PlayerPrefs.GetInt("ReachedIndex"))
+        {
+            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel",1) + 1);
+            PlayerPrefs.Save();
+        }
+
     }
 
 }
