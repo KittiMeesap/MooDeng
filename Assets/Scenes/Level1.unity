@@ -244,7 +244,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -519077417
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -6464,7 +6464,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -705739829
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f4c3890bb0939ef4b8744c28bbe9e733, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6701,7 +6701,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1681263605
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -92
   m_Sprite: {fileID: 21300000, guid: 8e75cd2633e0a3e40b7f1f7beeb7178c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6785,7 +6785,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -705739829
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1147b4a36989e0a4aa9e12fc7609170a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6869,7 +6869,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -519077417
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 101
   m_Sprite: {fileID: 21300000, guid: 077caeea45857454c8403f5ad3c1fb97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7158,7 +7158,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1681263605
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -9180,7 +9180,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -705739829
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 06d4ab4a3be2a5945a240e8b6534e0d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10338,8 +10338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f69368e4eaeaa49937e782feb75452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidGameId: 5719393
-  _iOSGameId: 5719392
+  _androidGameId: 5722134
+  _iOSGameId: 5722135
   _testMode: 1
 --- !u!4 &719970030
 Transform:
@@ -10575,7 +10575,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -994632813
-  m_SortingLayer: 6
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -23296,7 +23296,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -994632813
-  m_SortingLayer: 6
+  m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23792,7 +23792,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -519077417
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1317757723, guid: c585b63f6d9077e43a0a000730b687cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23957,7 +23957,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1681263605
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -92
   m_Sprite: {fileID: 21300000, guid: 8e75cd2633e0a3e40b7f1f7beeb7178c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24088,7 +24088,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -519077417
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0.03164482, a: 1}
@@ -26424,7 +26424,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -519077417
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
