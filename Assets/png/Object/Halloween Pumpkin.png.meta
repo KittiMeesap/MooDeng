@@ -1,0 +1,896 @@
+fileFormatVersion: 2
+guid: dedddcb26cfce69408715944652d32e8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 0
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Halloween Pumpkin_13
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 361
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86906bc3c89eb964e9cd6afb654de5ef
+      internalID: 921394740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_14
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 364
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 513a92e810fb98449aae18d3909e321e
+      internalID: 793080364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_15
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 374
+        width: 30
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b3f49206b07f24aab98ee00447a7ab
+      internalID: -604636493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_16
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 363
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1642ebf662e23945a166848af271ef1
+      internalID: -1431049286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_17
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 361
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb791b3dd728cd14e8d5e907305d39f3
+      internalID: 1356450823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_18
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 361
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e59beda3083cf479567d676b89b32b
+      internalID: 2089094521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_25
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 297
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87cb0b01d83089c4cabec5bf0657589f
+      internalID: 1847703929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_26
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 297
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e654bc6b77c5365488aac030ca0fe08e
+      internalID: -1312983795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_27
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 297
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9c36a0545147c458aa873e6ebc910d
+      internalID: -1480532136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_28
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 297
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4100a569d88a4eb4db459f76f7105e7c
+      internalID: 1973814359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_34
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 233
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9306d2dd013a40949a24f609585775e6
+      internalID: 1859508605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_35
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 233
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6078c5032c0fd8d418fb303afaabc2f5
+      internalID: 316463062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_41
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 169
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c9028c0bda35ca46aee6e6f0124688b
+      internalID: 2003398837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_42
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 169
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5757ec2248b748943bd1afab06248f61
+      internalID: 1509243194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_43
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 169
+        width: 32
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210254553d85c7b4f80744c0d37065cf
+      internalID: -312325409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_50
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 105
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1150760d2949de34497873ff7cdfecdd
+      internalID: 1223896300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_51
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 105
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca66ef5f4e94ee43886b139cd1ee91b
+      internalID: 2656199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_52
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 105
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e6d61a4fc6eeba4cb76d80d3a48bff4
+      internalID: -598840898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_57
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 41
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b66495a0486fdf47809fcd6e3214daa
+      internalID: -433406280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_58
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 41
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33cc9cf098a0f804bba1a63af2c06988
+      internalID: -130649802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween Pumpkin_59
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 41
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05229b246b50774ca49e0438cf8f213
+      internalID: 984700038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -89, y: -149.5}
+      - {x: -95, y: -160.5}
+      - {x: -95, y: -181.5}
+      - {x: -67, y: -181.5}
+      - {x: -63, y: -176.5}
+      - {x: -63, y: -153.5}
+      - {x: -72, y: -149.5}
+    - - {x: -20, y: -146.5}
+      - {x: -39, y: -146.5}
+      - {x: -46, y: -148.5}
+      - {x: -46, y: -169.5}
+      - {x: -39, y: -181.5}
+      - {x: -25, y: -181.5}
+      - {x: -20, y: -177.5}
+      - {x: -16, y: -159.5}
+      - {x: -16, y: -150.5}
+    - - {x: 28, y: -146.5}
+      - {x: 9, y: -146.5}
+      - {x: 2, y: -148.5}
+      - {x: 2, y: -169.5}
+      - {x: 9, y: -181.5}
+      - {x: 23, y: -181.5}
+      - {x: 28, y: -177.5}
+      - {x: 32, y: -159.5}
+      - {x: 32, y: -150.5}
+    - - {x: -171, y: -155.5}
+      - {x: -171, y: -173.5}
+      - {x: -123, y: -173.5}
+      - {x: -121, y: -170.5}
+      - {x: -121, y: -155.5}
+    - - {x: -83, y: -85.5}
+      - {x: -95, y: -95.5}
+      - {x: -95, y: -117.5}
+      - {x: -63, y: -117.5}
+      - {x: -63, y: -91.5}
+      - {x: -73, y: -85.5}
+    - - {x: -34, y: -86.5}
+      - {x: -47, y: -96.5}
+      - {x: -47, y: -117.5}
+      - {x: -15, y: -117.5}
+      - {x: -15, y: -97.5}
+      - {x: -24, y: -86.5}
+    - - {x: 31, y: -99.5}
+      - {x: 20, y: -86.5}
+      - {x: 10, y: -86.5}
+      - {x: 1, y: -100.5}
+      - {x: 1, y: -113.5}
+      - {x: 3, y: -117.5}
+      - {x: 29, y: -117.5}
+      - {x: 32, y: -113.5}
+      - {x: 33, y: -110.5}
+      - {x: 33, y: -104.5}
+    - - {x: -174, y: -90.5}
+      - {x: -175, y: -91.5}
+      - {x: -175, y: -108.5}
+      - {x: -125, y: -108.5}
+      - {x: -124, y: -106.5}
+      - {x: -124, y: -90.5}
+    - - {x: -121, y: -90.5}
+      - {x: -122, y: -94.5}
+      - {x: -122, y: -107.5}
+      - {x: -120, y: -108.5}
+      - {x: -96, y: -108.5}
+      - {x: -96, y: -92.5}
+      - {x: -98, y: -90.5}
+    - - {x: -163, y: -98.5}
+      - {x: -164, y: -98.5}
+      - {x: -164, y: -100.5}
+      - {x: -163, y: -100.5}
+    - - {x: -89, y: -21.5}
+      - {x: -95, y: -32.5}
+      - {x: -95, y: -47.5}
+      - {x: -93, y: -53.5}
+      - {x: -66, y: -53.5}
+      - {x: -63, y: -52.5}
+      - {x: -63, y: -25.5}
+      - {x: -72, y: -21.5}
+    - - {x: -43, y: -26.5}
+      - {x: -48, y: -37.5}
+      - {x: -48, y: -49.5}
+      - {x: -46, y: -53.5}
+      - {x: -15, y: -53.5}
+      - {x: -14, y: -51.5}
+      - {x: -14, y: -33.5}
+      - {x: -25, y: -26.5}
+    - - {x: -1, y: -42.5}
+      - {x: -1, y: -53.5}
+      - {x: 30, y: -53.5}
+      - {x: 35, y: -52.5}
+      - {x: 35, y: -39.5}
+      - {x: 33, y: -36.5}
+      - {x: 23, y: -34.5}
+      - {x: 13, y: -34.5}
+      - {x: 1, y: -36.5}
+    - - {x: -113, y: -27.5}
+      - {x: -171, y: -27.5}
+      - {x: -173, y: -28.5}
+      - {x: -173, y: -45.5}
+      - {x: -111, y: -45.5}
+      - {x: -111, y: -28.5}
+    - - {x: -149, y: -35.5}
+      - {x: -150, y: -35.5}
+      - {x: -150, y: -38.5}
+      - {x: -149, y: -37.5}
+    - - {x: -89, y: 42.5}
+      - {x: -95, y: 31.5}
+      - {x: -95, y: 13.5}
+      - {x: -94, y: 11.5}
+      - {x: -89, y: 10.5}
+      - {x: -66, y: 10.5}
+      - {x: -63, y: 14.5}
+      - {x: -63, y: 38.5}
+      - {x: -72, y: 42.5}
+    - - {x: -23, y: 40.5}
+      - {x: -41, y: 40.5}
+      - {x: -47, y: 28.5}
+      - {x: -47, y: 12.5}
+      - {x: -44, y: 10.5}
+      - {x: -15, y: 10.5}
+      - {x: -15, y: 30.5}
+      - {x: -21, y: 39.5}
+    - - {x: -172, y: 36.5}
+      - {x: -172, y: 18.5}
+      - {x: -121, y: 18.5}
+      - {x: -121, y: 36.5}
+    - - {x: -119, y: 36.5}
+      - {x: -119, y: 18.5}
+      - {x: -100, y: 18.5}
+      - {x: -100, y: 36.5}
+    - - {x: -160, y: 28.5}
+      - {x: -161, y: 28.5}
+      - {x: -161, y: 26.5}
+      - {x: -160, y: 26.5}
+    - - {x: -83, y: 106.5}
+      - {x: -95, y: 100.5}
+      - {x: -95, y: 74.5}
+      - {x: -63, y: 74.5}
+      - {x: -63, y: 99.5}
+      - {x: -69, y: 106.5}
+    - - {x: -43, y: 110.5}
+      - {x: -45, y: 107.5}
+      - {x: -45, y: 76.5}
+      - {x: -39, y: 74.5}
+      - {x: -22, y: 74.5}
+      - {x: -20, y: 78.5}
+      - {x: -20, y: 108.5}
+      - {x: -21, y: 110.5}
+    - - {x: 24, y: 110.5}
+      - {x: 3, y: 110.5}
+      - {x: 3, y: 88.5}
+      - {x: 11, y: 74.5}
+      - {x: 25, y: 74.5}
+      - {x: 28, y: 77.5}
+      - {x: 28, y: 106.5}
+    - - {x: 53, y: 106.5}
+      - {x: 49, y: 100.5}
+      - {x: 49, y: 79.5}
+      - {x: 51, y: 74.5}
+      - {x: 76, y: 74.5}
+      - {x: 81, y: 78.5}
+      - {x: 81, y: 102.5}
+      - {x: 73, y: 106.5}
+    - - {x: -173, y: 100.5}
+      - {x: -173, y: 82.5}
+      - {x: -99, y: 82.5}
+      - {x: -99, y: 100.5}
+    - - {x: -118, y: 92.5}
+      - {x: -116, y: 90.5}
+      - {x: -113, y: 91.5}
+      - {x: -116, y: 92.5}
+      - {x: -118, y: 90.5}
+      - {x: -117, y: 90.5}
+    - - {x: -89, y: 143.5}
+      - {x: -89, y: 139.5}
+      - {x: -88, y: 138.5}
+      - {x: -68, y: 138.5}
+      - {x: -68, y: 160.5}
+      - {x: -75, y: 163.5}
+      - {x: -81, y: 163.5}
+      - {x: -87, y: 158.5}
+    - - {x: 107, y: 162.5}
+      - {x: 95, y: 154.5}
+      - {x: 95, y: 138.5}
+      - {x: 131, y: 138.5}
+      - {x: 131, y: 154.5}
+      - {x: 122, y: 162.5}
+    - - {x: 167, y: 170.5}
+      - {x: 151, y: 170.5}
+      - {x: 145, y: 157.5}
+      - {x: 145, y: 141.5}
+      - {x: 151, y: 138.5}
+      - {x: 172, y: 138.5}
+      - {x: 177, y: 142.5}
+      - {x: 177, y: 156.5}
+      - {x: 176, y: 160.5}
+    - - {x: 67, y: 174.5}
+      - {x: 60, y: 171.5}
+      - {x: 52, y: 163.5}
+      - {x: 52, y: 140.5}
+      - {x: 78, y: 140.5}
+      - {x: 78, y: 168.5}
+      - {x: 70, y: 174.5}
+    - - {x: -33, y: 170.5}
+      - {x: -43, y: 167.5}
+      - {x: -43, y: 143.5}
+      - {x: -40, y: 141.5}
+      - {x: -20, y: 141.5}
+      - {x: -20, y: 159.5}
+      - {x: -26, y: 170.5}
+    - - {x: -169, y: 165.5}
+      - {x: -173, y: 161.5}
+      - {x: -173, y: 147.5}
+      - {x: -99, y: 147.5}
+      - {x: -99, y: 164.5}
+      - {x: -101, y: 165.5}
+    - - {x: 8, y: 172.5}
+      - {x: 0, y: 168.5}
+      - {x: 0, y: 155.5}
+      - {x: 2, y: 151.5}
+      - {x: 33, y: 151.5}
+      - {x: 34, y: 156.5}
+      - {x: 34, y: 166.5}
+      - {x: 28, y: 172.5}
+    - - {x: -125, y: 157.5}
+      - {x: -126, y: 157.5}
+      - {x: -126, y: 154.5}
+      - {x: -125, y: 155.5}
+    - - {x: -48, y: 200.5}
+      - {x: -48, y: 177.5}
+      - {x: 34, y: 177.5}
+      - {x: 34, y: 200.5}
+    - - {x: 50, y: 200.5}
+      - {x: 48, y: 196.5}
+      - {x: 48, y: 177.5}
+      - {x: 82, y: 177.5}
+      - {x: 82, y: 200.5}
+    - - {x: 0, y: 189.5}
+      - {x: 0, y: 188.5}
+      - {x: 2, y: 190.5}
+      - {x: 3, y: 190.5}
+      - {x: 3, y: 187.5}
+      - {x: 2, y: 188.5}
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Halloween Pumpkin_0: 949696337
+      Halloween Pumpkin_1: 1975818744
+      Halloween Pumpkin_10: -505634904
+      Halloween Pumpkin_11: -1493406107
+      Halloween Pumpkin_12: -1373532777
+      Halloween Pumpkin_13: 921394740
+      Halloween Pumpkin_14: 793080364
+      Halloween Pumpkin_15: -604636493
+      Halloween Pumpkin_16: -1431049286
+      Halloween Pumpkin_17: 1356450823
+      Halloween Pumpkin_18: 2089094521
+      Halloween Pumpkin_19: -1668234888
+      Halloween Pumpkin_2: -1640174557
+      Halloween Pumpkin_20: -1216505607
+      Halloween Pumpkin_21: 1341023910
+      Halloween Pumpkin_22: -841353924
+      Halloween Pumpkin_23: 2123900785
+      Halloween Pumpkin_24: -875813908
+      Halloween Pumpkin_25: 1847703929
+      Halloween Pumpkin_26: -1312983795
+      Halloween Pumpkin_27: -1480532136
+      Halloween Pumpkin_28: 1973814359
+      Halloween Pumpkin_29: 1996162867
+      Halloween Pumpkin_3: -1015269897
+      Halloween Pumpkin_30: 258608857
+      Halloween Pumpkin_31: 1474422226
+      Halloween Pumpkin_32: 208480275
+      Halloween Pumpkin_33: -1509799814
+      Halloween Pumpkin_34: 1859508605
+      Halloween Pumpkin_35: 316463062
+      Halloween Pumpkin_36: 1642655752
+      Halloween Pumpkin_37: -1041860675
+      Halloween Pumpkin_38: -1438358101
+      Halloween Pumpkin_39: 681593774
+      Halloween Pumpkin_4: 192659529
+      Halloween Pumpkin_40: 180119277
+      Halloween Pumpkin_41: 2003398837
+      Halloween Pumpkin_42: 1509243194
+      Halloween Pumpkin_43: -312325409
+      Halloween Pumpkin_44: -1952829851
+      Halloween Pumpkin_45: -1910546106
+      Halloween Pumpkin_46: 1234775742
+      Halloween Pumpkin_47: -1344652091
+      Halloween Pumpkin_48: 734954697
+      Halloween Pumpkin_49: -111578419
+      Halloween Pumpkin_5: 678328745
+      Halloween Pumpkin_50: 1223896300
+      Halloween Pumpkin_51: 2656199
+      Halloween Pumpkin_52: -598840898
+      Halloween Pumpkin_53: 755182390
+      Halloween Pumpkin_54: -2084374649
+      Halloween Pumpkin_55: 2144537971
+      Halloween Pumpkin_56: -667599996
+      Halloween Pumpkin_57: -433406280
+      Halloween Pumpkin_58: -130649802
+      Halloween Pumpkin_59: 984700038
+      Halloween Pumpkin_6: 1875634862
+      Halloween Pumpkin_7: -224618367
+      Halloween Pumpkin_8: -2122598152
+      Halloween Pumpkin_9: -1123919483
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

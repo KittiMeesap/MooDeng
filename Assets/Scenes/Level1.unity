@@ -5323,6 +5323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 283208968}
+  - component: {fileID: 283208969}
   m_Layer: 0
   m_Name: RemoteConfig
   m_TagString: Untagged
@@ -5345,6 +5346,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &283208969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283208967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604b284017b24204e85bc2b6ae06f3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHalloween: 0
 --- !u!1 &296384641
 GameObject:
   m_ObjectHideFlags: 0
@@ -8510,6 +8524,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1257432869399111996, guid: 35f409698c2eb804292697d65adef0d0, type: 3}
   m_PrefabInstance: {fileID: 589682068}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &717851902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717851903}
+  m_Layer: 0
+  m_Name: HalloweenTheme
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &717851903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717851902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &719970028
 GameObject:
   m_ObjectHideFlags: 0
@@ -28035,3 +28080,4 @@ SceneRoots:
   - {fileID: 1908599641}
   - {fileID: 530561204}
   - {fileID: 283208968}
+  - {fileID: 717851903}
