@@ -9,6 +9,7 @@ public class ApplyRemoteConfigSetting : MonoBehaviour
     public static ApplyRemoteConfigSetting Instance { get; private set; }
 
     public bool isHalloween = false;
+    public HalloweenSetup halloweenSetup;
 
     public struct userAttributes 
     {
@@ -81,6 +82,7 @@ public class ApplyRemoteConfigSetting : MonoBehaviour
                 Debug.Log("New settings loaded this session; update values accordingly.");
 
                 isHalloween = RemoteConfigService.Instance.appConfig.GetBool("isHalloween");
+                halloweenSetup.SetupHalloweenTheme(isHalloween);
 
                 break;
         }
