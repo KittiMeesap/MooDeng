@@ -42,16 +42,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // ตรวจสอบว่าผู้เล่นแตะพื้นหรือไม่
         isGroundedBool = IsGrounded();
         if (isGroundedBool)
         {
-            canDoubleJump = true; // ตั้งค่ากระโดดสองครั้งได้อีกครั้งเมื่อสัมผัสพื้น
+            canDoubleJump = true;
             moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
 
             if (playerInput.actions["Jump"].triggered)
             {
-                Debug.Log("ผู้เล่นกระโดดจากพื้น");
+                Debug.Log("");
                 Jump(jumpForce);
             }
         }
@@ -59,9 +58,9 @@ public class PlayerController : MonoBehaviour
         {
             if (canDoubleJump && playerInput.actions["Jump"].triggered)
             {
-                Debug.Log("ผู้เล่นกระโดดสองครั้ง");
+                Debug.Log("");
                 Jump(doubleJumpForce);
-                canDoubleJump = false; // ปิดการกระโดดสองครั้งจนกว่าจะสัมผัสพื้นอีกครั้ง
+                canDoubleJump = false; 
             }
         }
 
@@ -72,7 +71,6 @@ public class PlayerController : MonoBehaviour
             FlipSprite(moveX);
         }
 
-        // ตั้งค่าผลกระทบเมื่อผู้เล่นสัมผัสพื้นหลังจากอยู่ในอากาศ
         if (!wasOnGround && isGroundedBool)
         {
             ImpactEffect.gameObject.SetActive(true);
@@ -86,14 +84,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // รับค่าการเคลื่อนที่ทางซ้ายและขวาจาก PlayerInput
         moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
         rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
     }
 
     private void Jump(float jumpForce)
     {
-        // รีเซ็ตความเร็วแนวตั้งก่อนการกระโดด
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         playeranim.SetTrigger("jump");
@@ -101,10 +97,9 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        float radius = 0.15f; // รัศมีของวงกลม
+        float radius = 0.15f; 
         Vector2 position = new Vector2(groundCheck.position.x, groundCheck.position.y - 0.1f);
 
-        // วาดเส้นให้เห็นใน Scene เพื่อช่วย Debug
         Debug.DrawRay(position, Vector2.down * radius, Color.red);
 
         Collider2D hit = Physics2D.OverlapCircle(position, radius, groundLayer);

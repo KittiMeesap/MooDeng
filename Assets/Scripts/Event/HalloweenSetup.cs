@@ -5,22 +5,13 @@ using UnityEngine;
 public class HalloweenSetup : MonoBehaviour
 {
     [Header("Normal")]
-    public GameObject halloweenCoin;
-
-    [System.Serializable]
-    public struct ThemeSetupData
-    {
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject normalPickUp;
+    public GameObject halloweenPickUp;
 
     public void SetupHalloweenTheme(bool isActive)
     {
-        halloweenCoin.SetActive(isActive);
+        halloweenPickUp.SetActive(isActive);
+        normalPickUp.SetActive(!isActive);
     }
 
 }

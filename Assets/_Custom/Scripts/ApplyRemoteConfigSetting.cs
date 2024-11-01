@@ -62,7 +62,7 @@ public class ApplyRemoteConfigSetting : MonoBehaviour
         
 
         RemoteConfigService.Instance.FetchCompleted += ApplyRemoteSettings;
-        RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
+        RemoteConfigService.Instance.FetchConfigs(uaStruct, new appAttributes());
     }
 
     void ApplyRemoteSettings(ConfigResponse configResponse)
