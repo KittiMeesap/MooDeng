@@ -6,6 +6,8 @@ using Proyecto26;
 using SimpleJSON;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class RankUIManager : MonoBehaviour
 {
@@ -20,10 +22,22 @@ public class RankUIManager : MonoBehaviour
 
     private const string url = "https://moodengadventure-default-rtdb.asia-southeast1.firebasedatabase.app";
     private const string secret = "AIzaSyCa734MabQp-CNWa3wmJ5b8un6HyH21XzI";
+    private bool isLoadingData = false;
 
     private void Start()
     {
-        // เคลียร์ข้อมูลทั้งหมดใน rankPanel ก่อน
+        // โหลดชื่อและเวลาของผู้เล่นจาก PlayerPrefs
+        string currentPlayerName = PlayerPrefs.GetString("CurrentPlayerName", "Unknown Player");
+        float currentPlayerTime = PlayerPrefs.GetFloat("CurrentPlayerTime", 0f);
+
+        // กำหนดข้อมูลผู้เล่นปัจจุบันใน yourRankData
+        yourRankData.playerData = new PlayerData
+        {
+            playerName = currentPlayerName,
+            playerTime = currentPlayerTime
+        };
+
+        // เคลียร์ข้อมูลใน rankPanel ก่อน
         ClearRankData();
 
         // เพิ่มตัวเลือกด่านใน dropdown
@@ -32,12 +46,83 @@ public class RankUIManager : MonoBehaviour
         // ตั้งค่าเริ่มต้นของ Dropdown ตามด่านล่าสุดที่ผู้เล่นผ่าน
         SetDropdownToLastCompletedLevel();
 
-        // เพิ่ม listener สำหรับการเปลี่ยนแปลงของ dropdown
+        // โหลดข้อมูลอันดับของผู้เล่น
         levelDropdown.onValueChanged.AddListener(delegate {
             LoadLeaderboardData(levelDropdown.options[levelDropdown.value].text);
         });
+
+        // โหลดข้อมูลอันดับเริ่มต้นของด่านล่าสุด
+        LoadLeaderboardData(levelDropdown.options[levelDropdown.value].text);
     }
 
+    public void OnGoNextLevelButtonClicked()
+    {
+        // ดึงชื่อของซีนจากตัวเลือกใน Dropdown
+        string selectedLevel = levelDropdown.options[levelDropdown.value].text;
+
+        // ตรวจสอบว่าชื่อของซีนอยู่ในรูปแบบ "LevelX" โดยที่ X เป็นตัวเลข
+        if (selectedLevel.StartsWith("Level"))
+        {
+            // ดึงตัวเลขจากชื่อของซีนปัจจุบัน
+            string levelNumberStr = selectedLevel.Substring(5); // เอาส่วนที่เป็นตัวเลขหลัง "Level"
+            int levelNumber;
+
+            // พยายามแปลงตัวเลขเป็น integer
+            if (int.TryParse(levelNumberStr, out levelNumber))
+            {
+                // เพิ่ม 1 เพื่อสร้างชื่อซีนถัดไป
+                int nextLevelNumber = levelNumber + 1;
+                string nextLevelName = "Level" + nextLevelNumber;
+
+                // โหลดซีนตามชื่อที่สร้าง
+                SceneManager.LoadScene(nextLevelName);
+            }
+            else
+            {
+                Debug.LogError("Failed to parse level number from selected level name.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Selected level name does not start with 'Level'.");
+        }
+    }
+    private void CalculateRankForCurrentPlayer()
+    {
+        // สร้างรายการใหม่ที่เรียงลำดับ playerDatas ตาม playerTime โดยไม่เพิ่มผู้เล่นปัจจุบันเข้าไปในรายการ
+        List<PlayerData> sortedPlayerDatas = playerDatas.OrderBy(data => data.playerTime).ToList();
+
+        // หาลำดับของผู้เล่นปัจจุบันใน sortedPlayerDatas
+        int rank = 1;
+        foreach (PlayerData data in sortedPlayerDatas)
+        {
+            if (data.playerName == yourRankData.playerData.playerName)
+            {
+                yourRankData.playerData.rankNumber = rank;
+                yourRankData.UpdateData(); // อัปเดตข้อมูลใน UI สำหรับผู้เล่นปัจจุบัน
+                break;
+            }
+            rank++;
+        }
+    }
+
+
+
+
+
+    public void FindYourDataInRanking()
+    {
+        // ค้นหาข้อมูลของผู้เล่นในรายการอันดับจาก playerDatas ที่มีอยู่ใน RankUIManager
+        PlayerData currentPlayerData = playerDatas
+            .Where(data => data.playerName == yourRankData.playerData.playerName)
+            .FirstOrDefault();
+
+        // อัปเดตข้อมูลใน yourRankData
+        yourRankData.playerData = currentPlayerData;
+        yourRankData.UpdateData();
+
+        Debug.LogWarning("ข้อมูลของผู้เล่น: " + currentPlayerData.playerName);
+    }
 
     private void PopulateDropdown()
     {
@@ -68,16 +153,24 @@ public class RankUIManager : MonoBehaviour
 
     public void LoadLeaderboardData(string levelID)
     {
-        ClearRankData();
+        if (isLoadingData)
+        {
+            Debug.LogWarning("Data is currently loading, skipping duplicate load request.");
+            return; // ข้ามถ้ากำลังโหลดอยู่แล้ว
+        }
+
+        isLoadingData = true; // ตั้งสถานะว่ากำลังโหลดข้อมูล
+        ClearRankData(); // ล้างข้อมูลใน UI ก่อนโหลดใหม่
+        playerDatas.Clear(); // ล้างข้อมูลใน playerDatas ก่อนโหลดข้อมูลใหม่
 
         string loadUrl = $"{url}/ranking/{levelID}/playerDatas.json?auth={secret}";
+
+        Debug.Log($"Loading data from Firebase for level: {levelID}");
 
         RestClient.Get(loadUrl).Then(response =>
         {
             JSONNode jsonNode = JSONNode.Parse(response.Text);
-            playerDatas.Clear();
-
-            Debug.Log("Loaded data from Firebase for level: " + levelID);
+            Debug.Log("Data loaded successfully from Firebase.");
 
             for (int i = 0; i < jsonNode.Count; i++)
             {
@@ -85,22 +178,29 @@ public class RankUIManager : MonoBehaviour
                     rankNumber: i + 1,
                     playerName: jsonNode[i]["playerName"],
                     playerTime: jsonNode[i]["playerTime"],
-                    profileSprite: null // ตั้งเป็น null หากไม่มีรูปภาพ
+                    profileSprite: null
                 );
 
-                Debug.Log($"Adding player data - Rank: {newData.rankNumber}, Name: {newData.playerName}, Time: {newData.playerTime}");
                 playerDatas.Add(newData);
             }
 
+            CalculateRankForCurrentPlayer();
             DisplayRankData();
         }).Catch(error =>
         {
-            Debug.Log("เกิดข้อผิดพลาดในการดึงข้อมูลจากเซิร์ฟเวอร์: " + error.Message);
+            Debug.LogError("เกิดข้อผิดพลาดในการดึงข้อมูลจากเซิร์ฟเวอร์: " + error.Message);
+        }).Finally(() =>
+        {
+            isLoadingData = false; // ปลดล็อกสถานะเมื่อโหลดเสร็จสิ้น
         });
     }
 
+
+
+
     private void DisplayRankData()
     {
+        ClearRankData(); // ล้างข้อมูลเก่าออกจาก UI
         Debug.Log("Displaying rank data...");
 
         foreach (PlayerData playerData in playerDatas)
@@ -117,6 +217,9 @@ public class RankUIManager : MonoBehaviour
         Debug.Log("Finished displaying rank data.");
     }
 
+
+
+
     private void ClearRankData()
     {
         Debug.Log("Clearing previous rank data...");
@@ -125,10 +228,11 @@ public class RankUIManager : MonoBehaviour
         {
             Destroy(createdData);
         }
-        createdPlayerData.Clear();
+        createdPlayerData.Clear(); // เคลียร์รายการที่เก็บอ้างอิง GameObject
 
         Debug.Log("Cleared all rank data.");
     }
+
 
 
     public void ReloadRankData()

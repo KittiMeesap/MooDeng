@@ -130,16 +130,17 @@ public class GameManager : MonoBehaviour
     public void LevelComplete()
     {
         isTiming = false;
-        levelCompletePanel.SetActive(true);
-        levelCompleteText.text = "LEVEL COMPLETE";
 
         // จัดรูปแบบ LevelID
         string firstPart = levelID.Length >= 5 ? levelID.Substring(0, 5) : levelID;
         string lastPart = levelID.Length > 5 ? levelID.Substring(5) : "";
         string formattedLevelID = $"{firstPart} {lastPart}";
 
-        levelCompleteCoins.text = $"COINS COLLECTED: {coinCount} / {totalCoins}";
-        levelCompleteTime.text = $"Time: {timer:F2} s";
+        levelCompletePanel.SetActive(true);
+        levelCompleteText.text = $"{firstPart} {lastPart} Complete";
+
+        levelCompleteCoins.text = $"Carrot Collected : {coinCount} / {totalCoins}";
+        levelCompleteTime.text = $"Time : {timer:F2} s";
 
         leaderboardButton.SetActive(true);
         hideui.SetActive(false);
@@ -148,6 +149,8 @@ public class GameManager : MonoBehaviour
         SavePlayerScoreToDatabase();
 
         PlayerPrefs.SetString("LastCompletedLevel", levelID);
+        PlayerPrefs.SetString("CurrentPlayerName", playerName);
+        PlayerPrefs.SetFloat("CurrentPlayerTime", timer);
         PlayerPrefs.Save();
     }
 
@@ -160,7 +163,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(response.Text);
             JSONNode jsonNode = JSONNode.Parse(response.Text);
-
             ranking.playerDatas = new List<PlayerData>();
             for (int i = 0; i < jsonNode.Count; i++)
             {

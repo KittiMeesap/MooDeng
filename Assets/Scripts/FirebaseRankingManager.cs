@@ -144,7 +144,7 @@ public class FirebaseRankingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     [ContextMenu("Set Local Data To Database")]
@@ -183,6 +183,7 @@ public class FirebaseRankingManager : MonoBehaviour
         rankUIManager.yourRankData.playerData = currentPlayerData;
 
         rankUIManager.yourRankData.UpdateData();
+        Debug.LogWarning("test" + currentPlayerData.playerName);
     }
 
     public void ReloadSortingData(string levelID)
