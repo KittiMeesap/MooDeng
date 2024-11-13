@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f59610f3-42ef-4e19-968e-cc704d55290b\"\r\n   
+=======
 <<<<<<< Updated upstream
   _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a17d6592-5b14-4bec-8496-e8eb746f6980\"\r\n   
+>>>>>>> 5f0185b5c17d06e44c91b504a65313b48d8029ae
     },\r\n    \"rs\": {\r\n      \"key\": \"testindex\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"07b3cf1e-7b5c-4a1b-9cec-82abce177631\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"efcddc22-38b1-4754-9b56-029b0e0553fa\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"isHalloween\",\r\n      \"type\": \"bool\",\r\n      \"value\": false\r\n   
     }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"a17d6592-5b14-4bec-8496-e8eb746f6980\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f59610f3-42ef-4e19-968e-cc704d55290b\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"testindex\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+<<<<<<< HEAD
+    \"efcddc22-38b1-4754-9b56-029b0e0553fa\"\r\n    },\r\n    \"rs\": {\r\n     
+=======
     \"07b3cf1e-7b5c-4a1b-9cec-82abce177631\"\r\n    },\r\n    \"rs\": {\r\n     
 =======
   _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"aa79fa19-4b54-4d71-b771-debc861b1671\"\r\n   
@@ -35,12 +42,14 @@ MonoBehaviour:
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
     \"3da99e2a-315e-4c96-9b6a-68f5c6be2f7f\"\r\n    },\r\n    \"rs\": {\r\n     
 >>>>>>> Stashed changes
+>>>>>>> 5f0185b5c17d06e44c91b504a65313b48d8029ae
     \"key\": \"isHalloween\",\r\n      \"type\": \"bool\",\r\n      \"value\": false\r\n   
     }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"fbcdfb67-2257-4607-b5e8-55165e4a4aef\",\r\n   
-    \"name\": \"production\",\r\n    \"id\": \"7eb5273e-6746-4aa9-af57-dc08457e4a4e\",\r\n   
-    \"isDefault\": true,\r\n    \"createdAt\": \"2024-11-01T14:48:23Z\",\r\n    \"updatedAt\":
-    \"2024-11-01T14:48:23Z\"\r\n  },\r\n  {\r\n    \"projectId\": \"fbcdfb67-2257-4607-b5e8-55165e4a4aef\",\r\n   
     \"name\": \"development\",\r\n    \"id\": \"060372d9-ba87-49d0-88f5-dfd6d779c4e0\",\r\n   
     \"isDefault\": false,\r\n    \"createdAt\": \"2024-11-01T14:51:43Z\",\r\n   
-    \"updatedAt\": \"2024-11-01T14:51:43Z\"\r\n  }\r\n]"
+    \"updatedAt\": \"2024-11-01T14:51:43Z\"\r\n  },\r\n  {\r\n    \"projectId\":
+    \"fbcdfb67-2257-4607-b5e8-55165e4a4aef\",\r\n    \"name\": \"production\",\r\n   
+    \"id\": \"7eb5273e-6746-4aa9-af57-dc08457e4a4e\",\r\n    \"isDefault\": true,\r\n   
+    \"createdAt\": \"2024-11-01T14:48:23Z\",\r\n    \"updatedAt\": \"2024-11-01T14:48:23Z\"\r\n 
+    }\r\n]"

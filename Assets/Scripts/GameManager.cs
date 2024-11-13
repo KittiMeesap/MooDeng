@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text levelCompleteText;
     [SerializeField] private TMP_Text levelCompleteCoins;
     [SerializeField] private TMP_Text levelCompleteTime; // Text สำหรับแสดงเวลาจบในหน้าจอ Level Complete
-    [SerializeField] private GameObject leaderboardButton; // ปุ่มไปยังหน้า Leaderboard
+    [SerializeField] private GameObject leaderboardButton;
+    [SerializeField] private GameObject hideui;
+    [SerializeField] private GameObject portal;
+    [SerializeField] private GameObject player;
 
     private int totalCoins = 0; // จำนวนเหรียญที่ต้องเก็บในแต่ละด่าน
     [SerializeField] private string playerName = "Player"; // ชื่อผู้เล่น
@@ -36,9 +39,13 @@ public class GameManager : MonoBehaviour
     private const string url = "https://moodengadventure-default-rtdb.asia-southeast1.firebasedatabase.app"; // URL ของ Firebase
     private const string secret = "AIzaSyCa734MabQp-CNWa3wmJ5b8un6HyH21XzI"; // Secret Key ของ Firebase
 
-    public Ranking ranking = new Ranking();
-    public PlayerData currentPlayerData;
+    [HideInInspector] Ranking ranking = new Ranking();
+    [HideInInspector] PlayerData currentPlayerData;
 
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
     private void Awake()
     {
         instance = this;
@@ -47,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        portal.SetActive(false);
         FindTotalPickups();
         UpdateGUI();
     }
@@ -58,14 +66,26 @@ public class GameManager : MonoBehaviour
             timer += Time.deltaTime; // เพิ่มค่าของ timer ในแต่ละเฟรม
             UpdateTimerUI(); // อัปเดตการแสดงผลของเวลาใน UI
         }
+
+        if (coinCount >= totalCoins)
+        {
+            portal.SetActive(true);
+        }
     }
 
     private void UpdateTimerUI()
     {
-        int minutes = Mathf.FloorToInt(timer / 60F);
-        int seconds = Mathf.FloorToInt(timer % 60F);
-        // อัปเดต timerText ให้แสดงชื่อ Level และเวลาในรูปแบบ "Level 1 : 00:00"
-        timerText.text = $"{levelID} : {minutes:00}:{seconds:00}";
+        // ดึง 5 ตัวแรกของ levelID
+        string firstPart = levelID.Length >= 5 ? levelID.Substring(0, 5) : levelID;
+
+        // ดึงตัวอักษรที่เหลือทั้งหมดหลังจากตัวที่ 5
+        string lastPart = levelID.Length > 5 ? levelID.Substring(5) : "";
+
+        // รวมและจัดรูปแบบ
+        string formattedLevelID = $"{firstPart} {lastPart}";
+
+        // แสดงผลเป็น formattedLevelID และเวลาในรูปแบบทศนิยม
+        timerText.text = $"{formattedLevelID}\n{timer:F2}";
     }
 
     public void IncrementCoinCount()
@@ -76,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateGUI()
     {
-        coinText.text = coinCount.ToString();
+        coinText.text = $"{coinCount} / {totalCoins}";
     }
 
     public void Death()
@@ -109,21 +129,24 @@ public class GameManager : MonoBehaviour
 
     public void LevelComplete()
     {
-        isTiming = false; // หยุดการนับเวลาหากจบด่าน
+        isTiming = false;
         levelCompletePanel.SetActive(true);
         levelCompleteText.text = "LEVEL COMPLETE";
+
+        // จัดรูปแบบ LevelID
+        string firstPart = levelID.Length >= 5 ? levelID.Substring(0, 5) : levelID;
+        string lastPart = levelID.Length > 5 ? levelID.Substring(5) : "";
+        string formattedLevelID = $"{firstPart} {lastPart}";
+
         levelCompleteCoins.text = $"COINS COLLECTED: {coinCount} / {totalCoins}";
+        levelCompleteTime.text = $"Time: {timer:F2} s";
 
-        // แสดงเวลาที่ใช้ในด่านเมื่อจบด่าน
-        int minutes = Mathf.FloorToInt(timer / 60F);
-        int seconds = Mathf.FloorToInt(timer % 60F);
-        levelCompleteTime.text = $"Time: {minutes:00}:{seconds:00}";
+        leaderboardButton.SetActive(true);
+        hideui.SetActive(false);
+        player.SetActive(false);
 
-        leaderboardButton.SetActive(true); // แสดงปุ่ม Leaderboard เมื่อจบเลเวล
+        SavePlayerScoreToDatabase();
 
-        SavePlayerScoreToDatabase(); // บันทึกข้อมูลผู้เล่นเมื่อจบด่าน
-
-        // บันทึกด่านล่าสุดที่ผู้เล่นผ่าน
         PlayerPrefs.SetString("LastCompletedLevel", levelID);
         PlayerPrefs.Save();
     }
@@ -219,7 +242,7 @@ public class GameManager : MonoBehaviour
 
         if (isGameOver)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(levelID);
         }
     }
 

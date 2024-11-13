@@ -1,21 +1,37 @@
 {
   "project_info": {
+<<<<<<< HEAD
+    "project_number": "724429854856",
+    "project_id": "notificationapp-52fab",
+    "storage_bucket": "notificationapp-52fab.firebasestorage.app"
+=======
     "project_number": "797169912036",
     "project_id": "moodengdeng-39e01",
     "storage_bucket": "moodengdeng-39e01.firebasestorage.app"
+>>>>>>> 5f0185b5c17d06e44c91b504a65313b48d8029ae
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
+        "mobilesdk_app_id": "1:724429854856:android:17a047a93396e7cba3673d",
+        "android_client_info": {
+          "package_name": "com.moodeng.moodengadventure"
+=======
         "mobilesdk_app_id": "1:797169912036:android:e8ee3f3c51a9d793ab84f1",
         "android_client_info": {
           "package_name": "com.DefaultCompany.MooDengAdventure"
+>>>>>>> 5f0185b5c17d06e44c91b504a65313b48d8029ae
         }
       },
       "oauth_client": [],
       "api_key": [
         {
+<<<<<<< HEAD
+          "current_key": "AIzaSyAZjPoKfP3e1eRKY-ZyIOY1d43q6USmRfg"
+=======
           "current_key": "AIzaSyC2yB-YIpOCTNSMg9nHFE2bbRAWgI556dw"
+>>>>>>> 5f0185b5c17d06e44c91b504a65313b48d8029ae
         }
       ],
       "services": {

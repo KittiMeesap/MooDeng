@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +25,16 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem ImpactEffect;
     private bool wasOnGround;
 
-    public float fireRate = 0.5f;
+    public float slideForce = 10f; // ความแรงในการสไลด์
+    public float slideDuration = 0.5f; // เวลาที่ใช้ในการสไลด์
+    private bool isSliding = false;
+    private BoxCollider2D boxCollider;
+
+    // ขนาดและตำแหน่งของ Collider ในสถานะปกติและสถานะสไลด์
+    [HideInInspector] Vector2 normalColliderSize = new Vector2(2.080235f, 1.530562f);
+    [HideInInspector] Vector2 normalColliderOffset = new Vector2(-0.05012035f, 0.0332014f);
+    [HideInInspector] Vector2 slideColliderSize = new Vector2(2.080235f, 0.7642583f);
+    [HideInInspector] Vector2 slideColliderOffset = new Vector2(-0.05012035f, -0.3499504f);
 
     private void Start()
     {
@@ -34,10 +42,10 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         footEmissions = footsteps.emission;
 
-        if (playerInput == null)
-        {
-            Debug.LogError("PlayerInput ไม่ได้ถูกกำหนดค่า!");
-        }
+        // อ้างอิง BoxCollider2D และกำหนดขนาดเริ่มต้น
+        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.size = normalColliderSize; // ตั้งค่าเริ่มต้นให้เป็นขนาดปกติ
+        boxCollider.offset = normalColliderOffset; // ตั้งค่าเริ่มต้นให้เป็นตำแหน่งปกติ
     }
 
     private void Update()
@@ -50,7 +58,6 @@ public class PlayerController : MonoBehaviour
 
             if (playerInput.actions["Jump"].triggered)
             {
-                Debug.Log("");
                 Jump(jumpForce);
             }
         }
@@ -58,9 +65,8 @@ public class PlayerController : MonoBehaviour
         {
             if (canDoubleJump && playerInput.actions["Jump"].triggered)
             {
-                Debug.Log("");
                 Jump(doubleJumpForce);
-                canDoubleJump = false; 
+                canDoubleJump = false;
             }
         }
 
@@ -80,12 +86,67 @@ public class PlayerController : MonoBehaviour
         }
 
         wasOnGround = isGroundedBool;
+
+        // เริ่มสไลด์เมื่อกดปุ่ม Slide และไม่อยู่ในสถานะสไลด์
+        if (playerInput.actions["Slide"].triggered && !isSliding)
+        {
+            StartCoroutine(Slide());
+        }
+
+        // ถ้ากดปุ่มค้างไว้ให้สไลด์ต่อเนื่อง
+        if (playerInput.actions["Slide"].IsPressed() && isSliding)
+        {
+            rb.velocity = new Vector2(moveX * slideForce, rb.velocity.y);
+        }
+
+        // หยุดสไลด์เมื่อปล่อยปุ่ม Slide
+        if (playerInput.actions["Slide"].WasReleasedThisFrame() && isSliding)
+        {
+            StopSlide();
+        }
+    }
+
+    private IEnumerator Slide()
+    {
+        isSliding = true;
+        playeranim.SetBool("isSliding", true); // เริ่มอนิเมชันสไลด์
+
+        // เปลี่ยนขนาดและตำแหน่งของ Collider เมื่อสไลด์
+        boxCollider.size = slideColliderSize;
+        boxCollider.offset = slideColliderOffset;
+
+        // เริ่มการสไลด์โดยการตั้งค่า velocity ตามทิศทางที่กำลังเดินอยู่
+        rb.velocity = new Vector2(moveX * slideForce, rb.velocity.y);
+
+        // รอสักพักก่อนหยุดสไลด์ถ้าไม่ได้กดปุ่มค้าง
+        yield return new WaitForSeconds(slideDuration);
+
+        if (!playerInput.actions["Slide"].IsPressed())
+        {
+            StopSlide();
+        }
+    }
+
+    private void StopSlide()
+    {
+        isSliding = false;
+        playeranim.SetBool("isSliding", false); // หยุดอนิเมชันสไลด์
+
+        // คืนขนาดและตำแหน่งของ Collider เป็นขนาดปกติ
+        boxCollider.size = normalColliderSize;
+        boxCollider.offset = normalColliderOffset;
+
+        // หยุดการเคลื่อนที่ในแนวนอนหลังการสไลด์
+        rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
     private void FixedUpdate()
     {
-        moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
-        rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+        if (!isSliding) // ป้องกันไม่ให้เคลื่อนที่ตามปกติเมื่ออยู่ในสถานะสไลด์
+        {
+            moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
+            rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+        }
     }
 
     private void Jump(float jumpForce)
@@ -97,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        float radius = 0.15f; 
+        float radius = 0.15f;
         Vector2 position = new Vector2(groundCheck.position.x, groundCheck.position.y - 0.1f);
 
         Debug.DrawRay(position, Vector2.down * radius, Color.red);
@@ -107,8 +168,19 @@ public class PlayerController : MonoBehaviour
         return isGrounded;
     }
 
-    public void SetAnimations()
+public void SetAnimations()
+{
+    if (isSliding)
     {
+        // ถ้ากำลังสไลด์ ให้แสดงอนิเมชันสไลด์อย่างเดียว
+        playeranim.SetBool("isSliding", true);
+        playeranim.SetBool("run", false);
+    }
+    else
+    {
+        // ถ้าไม่ได้สไลด์ แสดงอนิเมชันวิ่งหรือหยุดตามสถานะการเคลื่อนไหว
+        playeranim.SetBool("isSliding", false);
+
         if (moveX != 0 && isGroundedBool)
         {
             playeranim.SetBool("run", true);
@@ -120,6 +192,8 @@ public class PlayerController : MonoBehaviour
             footEmissions.rateOverTime = 0f;
         }
     }
+}
+
 
     private void FlipSprite(float direction)
     {

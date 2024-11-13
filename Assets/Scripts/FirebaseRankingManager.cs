@@ -144,7 +144,7 @@ public class FirebaseRankingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ReloadSortingData("Level1"); // ตัวอย่างการโหลดข้อมูลสำหรับ Level 1
+        
     }
 
     [ContextMenu("Set Local Data To Database")]

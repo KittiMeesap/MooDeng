@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f1f23061eb94677b4c099331c06f0b, type: 3}
   m_Name: pushNotificationsSettings
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  firebaseWebApiKey: AIzaSyAZjPoKfP3e1eRKY-ZyIOY1d43q6USmRfg
+  firebaseProjectNumber: 724429854856
+  firebaseAppID: 1:724429854856:android:17a047a93396e7cba3673d
+  firebaseProjectID: notificationapp-52fab
+=======
   firebaseWebApiKey: AIzaSyCwNoBwkNPJpCVhdqYRjeeGC7CsNPUiJpE
   firebaseProjectNumber: 797169912036
   firebaseAppID: 1:797169912036:android:e8ee3f3c51a9d793ab84f1
   firebaseProjectID: moodengdeng-39e01
+>>>>>>> 5f0185b5c17d06e44c91b504a65313b48d8029ae

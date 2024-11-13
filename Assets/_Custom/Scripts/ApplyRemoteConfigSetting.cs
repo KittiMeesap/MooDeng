@@ -67,7 +67,6 @@ public class ApplyRemoteConfigSetting : MonoBehaviour
 
     void ApplyRemoteSettings(ConfigResponse configResponse)
     {
-
         switch (configResponse.requestOrigin)
         {
             case ConfigOrigin.Default:
@@ -82,10 +81,18 @@ public class ApplyRemoteConfigSetting : MonoBehaviour
                 Debug.Log("New settings loaded this session; update values accordingly.");
 
                 isHalloween = RemoteConfigService.Instance.appConfig.GetBool("isHalloween");
-                halloweenSetup.SetupHalloweenTheme(isHalloween);
 
+                // ตรวจสอบว่า halloweenSetup ไม่ใช่ null ก่อนเรียกใช้ฟังก์ชัน
+                if (halloweenSetup != null)
+                {
+                    halloweenSetup.SetupHalloweenTheme(isHalloween);
+                }
+                else
+                {
+                    Debug.LogWarning("HalloweenSetup object is missing.");
+                }
                 break;
         }
-
     }
+
 }

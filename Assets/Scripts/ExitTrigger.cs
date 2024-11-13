@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ExitTrigger : MonoBehaviour
 {
+    public Transform exitPosition; // ตำแหน่งที่ Player จะถูกดูดเข้าไป
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -11,7 +12,7 @@ public class ExitTrigger : MonoBehaviour
             if (GameManager.instance.CheckTotalCoins())
             {
                 UnlockNewLevel();
-                StartCoroutine(LevelExit());
+                StartCoroutine(LevelExit(collision.gameObject));
             }
             else
             {
@@ -20,26 +21,40 @@ public class ExitTrigger : MonoBehaviour
         }
     }
 
-    IEnumerator LevelExit()
+    private IEnumerator LevelExit(GameObject player)
     {
-        UIManager.instance.fadeToBlack = true;
-        yield return new WaitForSeconds(0.5f);
+        // เรียกใช้ FadeOutAndDeactivate เพื่อให้ Player ค่อยๆ หมุนและย่อขนาด
+        CustomizableFadeScaleRotate fadeScaleRotate = player.GetComponent<CustomizableFadeScaleRotate>();
+        fadeScaleRotate.FadeOutAndDeactivate();
 
-        GameManager.instance.LevelComplete(); // บันทึกข้อมูลและจบเลเวล
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        float duration = fadeScaleRotate.duration; // ใช้ระยะเวลาเดียวกับการ Fade Out
+        Vector3 startPosition = player.transform.position;
+        Vector3 endPosition = exitPosition.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
         {
-            FindObjectOfType<GameManager>().OnPlayerFinish();
+            float progress = elapsedTime / duration;
+
+            // เคลื่อนที่ Player ไปยังตำแหน่งของ exitPosition พร้อมกับย่อขนาด
+            player.transform.position = Vector3.Lerp(startPosition, endPosition, progress);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+
+        // ตั้งค่าตำแหน่งสุดท้ายเมื่อ Player หายไป
+        player.transform.position = endPosition;
+
+        // เรียกใช้งาน LevelComplete หลังจาก Player หายไป
+        GameManager.instance.LevelComplete();
     }
 
-    void UnlockNewLevel()
+    private void UnlockNewLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
         {
-            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt("ReachedIndex", UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
             PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
             PlayerPrefs.Save();
         }
