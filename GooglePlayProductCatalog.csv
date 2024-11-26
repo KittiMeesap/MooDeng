@@ -1,0 +1,4 @@
+Product ID,Published State,Purchase Type,Auto Translate,Locale; Title; Description,Auto Fill Prices,Price,Pricing Template ID
+100coins,published,managed_by_android,false,en_US;100 Coins;Consumable,true,990000,
+noads,published,managed_by_android,false,en_US;No Ads;Non Cunsumable,true,4990000,
+vip,published,managed_by_android,false,en_US;VIP;Subscription,true,9990000,
