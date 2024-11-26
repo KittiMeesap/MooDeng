@@ -6,6 +6,7 @@ using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Services.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
         portal.SetActive(false);
         FindTotalPickups();
         UpdateGUI();
+
+        playerName = PlayerPrefs.GetString("PlayerName", "Player");
     }
 
     private void Update()
@@ -103,6 +106,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameOver)
         {
+            AnalyticManager.Instance.DeathRestartGame();
             playerController.gameObject.SetActive(false);
             StartCoroutine(DeathCoroutine());
             isGameOver = true;
@@ -152,6 +156,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("CurrentPlayerName", playerName);
         PlayerPrefs.SetFloat("CurrentPlayerTime", timer);
         PlayerPrefs.Save();
+
+        AnalyticManager.Instance.FinishLevel(levelID);
     }
 
 

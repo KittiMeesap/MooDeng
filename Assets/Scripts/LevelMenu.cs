@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LevelMenu : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class LevelMenu : MonoBehaviour
     {
         string levelName = "Level" + levelId;
         SceneManager.LoadScene(levelName);
+
+        AnalyticManager.Instance.StartLevel(levelName);
     }
 
     void ButtonToArray()
