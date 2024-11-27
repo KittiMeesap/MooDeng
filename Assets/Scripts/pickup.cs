@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-
 public class pickup : MonoBehaviour
 {
     public enum pickupType { coin,gem,health}
