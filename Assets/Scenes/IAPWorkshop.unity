@@ -1085,6 +1085,38 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.67058825
       objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1413143306}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LoadScenesA, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340718899255904011, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3446311158313667627, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
       propertyPath: m_Name
       value: IAP_Panel
@@ -1809,6 +1841,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1413143305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413143307}
+  - component: {fileID: 1413143306}
+  m_Layer: 0
+  m_Name: S
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1413143306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413143305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c0196a067c84446b7cb7930589044c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenename: Menu
+--- !u!4 &1413143307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413143305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2546.5, y: 1052.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1448104287 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8679914301014474548, guid: 89ac206678fdea84f89d7f3bb7af5a4b, type: 3}
@@ -2572,3 +2649,4 @@ SceneRoots:
   - {fileID: 1646303347}
   - {fileID: 2008755935}
   - {fileID: 1286320137}
+  - {fileID: 1413143307}

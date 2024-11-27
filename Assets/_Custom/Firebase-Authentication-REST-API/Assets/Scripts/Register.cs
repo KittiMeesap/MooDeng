@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using Unity.VisualScripting;
-using Models;
 using UnityEngine.SceneManagement;
+using Models;
 
 public class Register : MonoBehaviour
 {
@@ -14,21 +12,25 @@ public class Register : MonoBehaviour
     [SerializeField] TMP_InputField password;
     [SerializeField] TMP_InputField username;
     [SerializeField] GameObject UIRegister;
+
     [Header("Login")]
     [SerializeField] TMP_InputField loginemail;
     [SerializeField] TMP_InputField loginpassword;
     [SerializeField] GameObject UILogin;
-    [SerializeField] TMP_Text welcometext;
-    // Start is called before the first frame update
+
+    [Header("Feedback")]
+    [SerializeField] TMP_Text welcometext; // ใช้แสดงข้อความต้อนรับและสถานะ
+
     public void OnRegister()
     {
         if (!string.IsNullOrEmpty(email.text) && !string.IsNullOrEmpty(password.text) && !string.IsNullOrEmpty(username.text))
         {
             AuthHandler.SignUp(email.text, password.text, new User(username.text));
+            welcometext.text = "Registration successful! Please verify your email.";
         }
         else
         {
-            Debug.Log("Please input your information!!!");
+            welcometext.text = "Please input all registration information!";
         }
     }
 
@@ -38,8 +40,7 @@ public class Register : MonoBehaviour
         {
             AuthHandler.SignIn(loginemail.text, loginpassword.text, user =>
             {
-                welcometext.text = "Welcome " + user.name;
-                welcometext.gameObject.SetActive(true);
+                welcometext.text = "Welcome " + user.name + "! Logging you in...";
 
                 // บันทึกชื่อผู้เล่นลงใน PlayerPrefs
                 PlayerPrefs.SetString("PlayerName", user.name);
@@ -49,36 +50,33 @@ public class Register : MonoBehaviour
             },
             () =>
             {
-                Debug.Log("Email not verified or login failed");
+                welcometext.text = "Login failed: Email not verified or incorrect credentials.";
             });
         }
         else
         {
-            Debug.Log("Please input your email and password!!!");
+            welcometext.text = "Please input your email and password!";
         }
     }
-
 
     public void CloseRegister()
     {
         UILogin.gameObject.SetActive(true);
         UIRegister.gameObject.SetActive(false);
+        welcometext.text = ""; // เคลียร์ข้อความต้อนรับเมื่อกลับไปหน้าล็อกอิน
     }
+
     public void OpenRegister()
     {
         UILogin.gameObject.SetActive(false);
         UIRegister.gameObject.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        welcometext.text = ""; // เคลียร์ข้อความต้อนรับเมื่อกลับไปหน้าลงทะเบียน
     }
 
     private IEnumerator WaitAndChangeScene()
     {
         yield return new WaitForSeconds(3f); // รอ 3 วินาที
+        welcometext.text = "Loading menu..."; // แจ้งสถานะการเปลี่ยนซีน
         SceneManager.LoadScene("Menu"); // ใส่ชื่อซีนที่ต้องการจะเปลี่ยน
     }
 }
