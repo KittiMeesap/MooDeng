@@ -5022,7 +5022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be8954b502b6604c8afeda465cdd942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnetRadius: 10
+  magnetRadius: 6
   magnetSpeed: 15
   itemTag: Coin
 --- !u!50 &6651671138620079067

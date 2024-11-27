@@ -31298,6 +31298,10 @@ PrefabInstance:
       value: IceBox
       objectReference: {fileID: 0}
     - target: {fileID: 6071103080464250569, guid: 63f386018c176ab4ca30e3f634c69249, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071103080464250569, guid: 63f386018c176ab4ca30e3f634c69249, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

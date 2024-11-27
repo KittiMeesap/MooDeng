@@ -131,6 +131,8 @@ public class RankUIManager : MonoBehaviour
         levelDropdown.options.Add(new TMP_Dropdown.OptionData("Level1"));
         levelDropdown.options.Add(new TMP_Dropdown.OptionData("Level2"));
         levelDropdown.options.Add(new TMP_Dropdown.OptionData("Level3"));
+        levelDropdown.options.Add(new TMP_Dropdown.OptionData("Level4"));
+        levelDropdown.options.Add(new TMP_Dropdown.OptionData("Level5"));
         // เพิ่มด่านอื่นๆ ตามต้องการ
     }
 

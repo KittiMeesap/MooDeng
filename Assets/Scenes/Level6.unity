@@ -4313,7 +4313,7 @@ MonoBehaviour:
   portal: {fileID: 1216249946}
   player: {fileID: 1639930986}
   playerName: Player
-  levelID: Level5
+  levelID: Level6
 --- !u!4 &940011430
 Transform:
   m_ObjectHideFlags: 0

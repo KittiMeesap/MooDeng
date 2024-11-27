@@ -19,7 +19,7 @@ public class pickup : MonoBehaviour
            
                 Instantiate(PickupEffect, transform.position, Quaternion.identity);
 
-                Destroy(this.gameObject,0.2f);
+                Destroy(this.gameObject,0f);
                 
             }
            
