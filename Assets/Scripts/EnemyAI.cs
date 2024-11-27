@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private bool isAttacking = false;
     private Vector2 startingPosition; // ตำแหน่งเริ่มต้นของศัตรู
+    
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         startingPosition = transform.position; // บันทึกตำแหน่งเริ่มต้นของศัตรู
-    }
+}
 
     void Update()
     {
@@ -33,8 +35,17 @@ public class EnemyAI : MonoBehaviour
             }
             else if (!isAttacking)
             {
+                PlayerController playerController = player.GetComponent<PlayerController>();
+                if (playerController.IsPoweredUp())
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    // ผู้เล่นไม่มีสถานะเพิ่มพลัง ให้ศัตรูโจมตี
+                    GameManager.instance.Death();
+                }
                 // หากอยู่ในระยะโจมตี ให้โจมตี
-                GameManager.instance.Death();
             }
         }
         else
@@ -62,19 +73,6 @@ public class EnemyAI : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-    }
-
-    private IEnumerator Attack()
-    {
-        isAttacking = true;
-
-        Debug.Log("Enemy attacks the player!");
-        
-
-        // รอเวลาตาม cooldown ก่อนจะโจมตีอีกครั้ง
-        yield return new WaitForSeconds(attackCooldown);
-
-        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()

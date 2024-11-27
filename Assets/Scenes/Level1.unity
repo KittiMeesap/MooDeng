@@ -952,7 +952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &283208968
 Transform:
   m_ObjectHideFlags: 0
@@ -4741,7 +4741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &717851903
 Transform:
   m_ObjectHideFlags: 0
@@ -32262,6 +32262,21 @@ MonoBehaviour:
   duration: 1
   targetScale: {x: 1, y: 1, z: 1}
   rotationSpeed: 3600
+--- !u!114 &1639930991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639930986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be8954b502b6604c8afeda465cdd942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetRadius: 10
+  magnetSpeed: 5
+  itemTag: Coin
 --- !u!1 &1700858879
 GameObject:
   m_ObjectHideFlags: 0
@@ -34010,6 +34025,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7414914669077376140, guid: 5f8ca2c95ed576e439c24430b2008fb3, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1639930991}
     - targetCorrespondingSourceObject: {fileID: 7414914669077376140, guid: 5f8ca2c95ed576e439c24430b2008fb3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1639930990}

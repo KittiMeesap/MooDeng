@@ -4953,8 +4953,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5533496205094143708}
   - component: {fileID: 5201207170484791064}
+  - component: {fileID: -5577782391259932676}
   - component: {fileID: 6651671138620079067}
-  - component: {fileID: 3426530740369134659}
   - component: {fileID: 6925732643399724766}
   - component: {fileID: 7439849990143746573}
   m_Layer: 0
@@ -5008,7 +5008,23 @@ MonoBehaviour:
   isPaused: 0
   footsteps: {fileID: 3291675663491337430}
   ImpactEffect: {fileID: 7335916715988413359}
-  fireRate: 0.5
+  slideForce: 10
+  slideDuration: 0.5
+--- !u!114 &-5577782391259932676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414914669077376140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be8954b502b6604c8afeda465cdd942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetRadius: 10
+  magnetSpeed: 15
+  itemTag: Coin
 --- !u!50 &6651671138620079067
 Rigidbody2D:
   serializedVersion: 4
@@ -5036,41 +5052,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &3426530740369134659
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7414914669077376140}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0049414635, y: 0.06987715}
-  m_Size: {x: 0.6030817, y: 1.6019897}
-  m_Direction: 0
 --- !u!61 &6925732643399724766
 BoxCollider2D:
   m_ObjectHideFlags: 0

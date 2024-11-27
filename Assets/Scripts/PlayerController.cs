@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.UI;
+using System;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +34,12 @@ public class PlayerController : MonoBehaviour
     private bool isSliding = false;
     private BoxCollider2D boxCollider;
 
+    private bool isPoweredUp = false;
+    private float powerUpTimer = 0f;
+
+    private SpriteRenderer spriteRenderer; // ใช้สำหรับเปลี่ยนสีของ SpriteRenderer
+    private Color originalColor; // เก็บสีเดิมของผู้เล่น
+
     // ขนาดและตำแหน่งของ Collider ในสถานะปกติและสถานะสไลด์
     [HideInInspector] Vector2 normalColliderSize = new Vector2(2.080235f, 1.530562f);
     [HideInInspector] Vector2 normalColliderOffset = new Vector2(-0.05012035f, 0.0332014f);
@@ -46,6 +56,17 @@ public class PlayerController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.size = normalColliderSize; // ตั้งค่าเริ่มต้นให้เป็นขนาดปกติ
         boxCollider.offset = normalColliderOffset; // ตั้งค่าเริ่มต้นให้เป็นตำแหน่งปกติ
+
+        // ค้นหา SpriteRenderer ที่อยู่ใน GameObject ลูก
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color; // เก็บสีเดิมของ Sprite
+        }
+        else
+        {
+            Debug.LogError("SpriteRenderer not found in child objects!");
+        }
     }
 
     private void Update()
@@ -103,6 +124,54 @@ public class PlayerController : MonoBehaviour
         if (playerInput.actions["Slide"].WasReleasedThisFrame() && isSliding)
         {
             StopSlide();
+        }
+
+        // ตรวจสอบสถานะเพิ่มพลัง
+        if (isPoweredUp)
+        {
+            powerUpTimer -= Time.deltaTime;
+
+            // หมดเวลาเพิ่มพลัง
+            if (powerUpTimer <= 0)
+            {
+                DeactivatePowerUp();
+            }
+        }
+    }
+
+    public void ActivatePowerUp(float duration)
+    {
+        isPoweredUp = true;
+        powerUpTimer = duration;
+
+        // เปลี่ยนสีผู้เล่นเป็นสีฟ้า
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.blue;
+        }
+    }
+
+    private void DeactivatePowerUp()
+    {
+        isPoweredUp = false;
+
+        // คืนสีผู้เล่นกลับเป็นสีเดิม
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+    }
+
+    public bool IsPoweredUp()
+    {
+        return isPoweredUp;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "killzone")
+        {
+            GameManager.instance.Death();
         }
     }
 
@@ -204,14 +273,6 @@ public void SetAnimations()
         else if (direction < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "killzone")
-        {
-            GameManager.instance.Death();
         }
     }
 }
