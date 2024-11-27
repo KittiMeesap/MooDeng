@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] Ranking ranking = new Ranking();
     [HideInInspector] PlayerData currentPlayerData;
 
+    private bool portalopen = false;
+
     public GameObject GetPlayer()
     {
         return player;
@@ -55,6 +57,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.instance.PlayBGM(SoundManager.instance.soundtrackClip); // เล่นเพลงเริ่มเกม
+        SoundManager.instance.PlaySFX(SoundManager.instance.gameStartClip);
+
         portal.SetActive(false);
         FindTotalPickups();
         UpdateGUI();
@@ -62,7 +67,7 @@ public class GameManager : MonoBehaviour
         playerName = PlayerPrefs.GetString("PlayerName", "Player");
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isTiming)
         {
@@ -106,6 +111,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameOver)
         {
+            SoundManager.instance.PlaySFX(SoundManager.instance.playerDeathClip);
             AnalyticManager.Instance.DeathRestartGame();
             playerController.gameObject.SetActive(false);
             StartCoroutine(DeathCoroutine());
@@ -133,6 +139,9 @@ public class GameManager : MonoBehaviour
 
     public void LevelComplete()
     {
+        SoundManager.instance.StopBGM(); // หยุดเพลงประกอบ
+        SoundManager.instance.PlaySFX(SoundManager.instance.gameWinClip); // เล่นเสียง Player ตาย
+
         isTiming = false;
 
         // จัดรูปแบบ LevelID

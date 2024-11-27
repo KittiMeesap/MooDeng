@@ -1,10 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.UI;
-using System;
-
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,11 +36,13 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer; // ใช้สำหรับเปลี่ยนสีของ SpriteRenderer
     private Color originalColor; // เก็บสีเดิมของผู้เล่น
 
-    // ขนาดและตำแหน่งของ Collider ในสถานะปกติและสถานะสไลด์
-    [HideInInspector] Vector2 normalColliderSize = new Vector2(2.080235f, 1.530562f);
-    [HideInInspector] Vector2 normalColliderOffset = new Vector2(-0.05012035f, 0.0332014f);
-    [HideInInspector] Vector2 slideColliderSize = new Vector2(2.080235f, 0.7642583f);
-    [HideInInspector] Vector2 slideColliderOffset = new Vector2(-0.05012035f, -0.3499504f);
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource walkAudioSource; // สำหรับเสียงเดิน
+    [SerializeField] private AudioSource slideAudioSource; // สำหรับเสียงสไลด์
+    public bool playerisWalk = false; // สถานะการเดิน
+
+
+
 
     private void Start()
     {
@@ -52,16 +50,14 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         footEmissions = footsteps.emission;
 
-        // อ้างอิง BoxCollider2D และกำหนดขนาดเริ่มต้น
         boxCollider = GetComponent<BoxCollider2D>();
-        boxCollider.size = normalColliderSize; // ตั้งค่าเริ่มต้นให้เป็นขนาดปกติ
-        boxCollider.offset = normalColliderOffset; // ตั้งค่าเริ่มต้นให้เป็นตำแหน่งปกติ
+        boxCollider.size = new Vector2(2.080235f, 1.530562f); // ขนาดเริ่มต้นของ Collider
+        boxCollider.offset = new Vector2(-0.05012035f, 0.0332014f); // Offset เริ่มต้น
 
-        // ค้นหา SpriteRenderer ที่อยู่ใน GameObject ลูก
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            originalColor = spriteRenderer.color; // เก็บสีเดิมของ Sprite
+            originalColor = spriteRenderer.color;
         }
         else
         {
@@ -72,6 +68,20 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isGroundedBool = IsGrounded();
+
+        // ตรวจสอบสถานะการเดิน
+        playerisWalk = moveX != 0 && isGroundedBool && !isSliding;
+
+        // เล่นหรือหยุดเสียงเดิน
+        if (playerisWalk && !walkAudioSource.isPlaying)
+        {
+            walkAudioSource.Play();
+        }
+        else if (!playerisWalk && walkAudioSource.isPlaying)
+        {
+            walkAudioSource.Stop();
+        }
+
         if (isGroundedBool)
         {
             canDoubleJump = true;
@@ -108,30 +118,25 @@ public class PlayerController : MonoBehaviour
 
         wasOnGround = isGroundedBool;
 
-        // เริ่มสไลด์เมื่อกดปุ่ม Slide และไม่อยู่ในสถานะสไลด์
         if (playerInput.actions["Slide"].triggered && !isSliding)
         {
             StartCoroutine(Slide());
         }
 
-        // ถ้ากดปุ่มค้างไว้ให้สไลด์ต่อเนื่อง
         if (playerInput.actions["Slide"].IsPressed() && isSliding)
         {
             rb.velocity = new Vector2(moveX * slideForce, rb.velocity.y);
         }
 
-        // หยุดสไลด์เมื่อปล่อยปุ่ม Slide
         if (playerInput.actions["Slide"].WasReleasedThisFrame() && isSliding)
         {
             StopSlide();
         }
 
-        // ตรวจสอบสถานะเพิ่มพลัง
         if (isPoweredUp)
         {
             powerUpTimer -= Time.deltaTime;
 
-            // หมดเวลาเพิ่มพลัง
             if (powerUpTimer <= 0)
             {
                 DeactivatePowerUp();
@@ -139,12 +144,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     public void ActivatePowerUp(float duration)
     {
         isPoweredUp = true;
         powerUpTimer = duration;
 
-        // เปลี่ยนสีผู้เล่นเป็นสีฟ้า
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.blue;
@@ -155,7 +160,6 @@ public class PlayerController : MonoBehaviour
     {
         isPoweredUp = false;
 
-        // คืนสีผู้เล่นกลับเป็นสีเดิม
         if (spriteRenderer != null)
         {
             spriteRenderer.color = originalColor;
@@ -167,27 +171,23 @@ public class PlayerController : MonoBehaviour
         return isPoweredUp;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "killzone")
-        {
-            GameManager.instance.Death();
-        }
-    }
-
     private IEnumerator Slide()
     {
         isSliding = true;
-        playeranim.SetBool("isSliding", true); // เริ่มอนิเมชันสไลด์
+        playeranim.SetBool("isSliding", true);
 
         // เปลี่ยนขนาดและตำแหน่งของ Collider เมื่อสไลด์
-        boxCollider.size = slideColliderSize;
-        boxCollider.offset = slideColliderOffset;
+        boxCollider.size = new Vector2(2.080235f, 0.7642583f);
+        boxCollider.offset = new Vector2(-0.05012035f, -0.3499504f);
 
-        // เริ่มการสไลด์โดยการตั้งค่า velocity ตามทิศทางที่กำลังเดินอยู่
         rb.velocity = new Vector2(moveX * slideForce, rb.velocity.y);
 
-        // รอสักพักก่อนหยุดสไลด์ถ้าไม่ได้กดปุ่มค้าง
+        // เล่นเสียงสไลด์
+        if (!slideAudioSource.isPlaying)
+        {
+            slideAudioSource.Play();
+        }
+
         yield return new WaitForSeconds(slideDuration);
 
         if (!playerInput.actions["Slide"].IsPressed())
@@ -196,22 +196,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     private void StopSlide()
     {
         isSliding = false;
-        playeranim.SetBool("isSliding", false); // หยุดอนิเมชันสไลด์
+        playeranim.SetBool("isSliding", false);
 
         // คืนขนาดและตำแหน่งของ Collider เป็นขนาดปกติ
-        boxCollider.size = normalColliderSize;
-        boxCollider.offset = normalColliderOffset;
+        boxCollider.size = new Vector2(2.080235f, 1.530562f);
+        boxCollider.offset = new Vector2(-0.05012035f, 0.0332014f);
 
-        // หยุดการเคลื่อนที่ในแนวนอนหลังการสไลด์
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        // หยุดเสียงสไลด์
+        if (slideAudioSource.isPlaying)
+        {
+            slideAudioSource.Stop();
+        }
     }
+
 
     private void FixedUpdate()
     {
-        if (!isSliding) // ป้องกันไม่ให้เคลื่อนที่ตามปกติเมื่ออยู่ในสถานะสไลด์
+        if (!isSliding)
         {
             moveX = playerInput.actions["MoveLeft"].ReadValue<float>() * -1f + playerInput.actions["MoveRight"].ReadValue<float>();
             rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
@@ -223,6 +228,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         playeranim.SetTrigger("jump");
+        SoundManager.instance.PlaySFX(SoundManager.instance.playerJumpClip);
     }
 
     private bool IsGrounded()
@@ -233,36 +239,32 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(position, Vector2.down * radius, Color.red);
 
         Collider2D hit = Physics2D.OverlapCircle(position, radius, groundLayer);
-        bool isGrounded = hit != null;
-        return isGrounded;
+        return hit != null;
     }
 
-public void SetAnimations()
-{
-    if (isSliding)
+    public void SetAnimations()
     {
-        // ถ้ากำลังสไลด์ ให้แสดงอนิเมชันสไลด์อย่างเดียว
-        playeranim.SetBool("isSliding", true);
-        playeranim.SetBool("run", false);
-    }
-    else
-    {
-        // ถ้าไม่ได้สไลด์ แสดงอนิเมชันวิ่งหรือหยุดตามสถานะการเคลื่อนไหว
-        playeranim.SetBool("isSliding", false);
-
-        if (moveX != 0 && isGroundedBool)
+        if (isSliding)
         {
-            playeranim.SetBool("run", true);
-            footEmissions.rateOverTime = 35f;
+            playeranim.SetBool("isSliding", true);
+            playeranim.SetBool("run", false);
         }
         else
         {
-            playeranim.SetBool("run", false);
-            footEmissions.rateOverTime = 0f;
+            playeranim.SetBool("isSliding", false);
+
+            if (moveX != 0 && isGroundedBool)
+            {
+                playeranim.SetBool("run", true);
+                footEmissions.rateOverTime = 35f;
+            }
+            else
+            {
+                playeranim.SetBool("run", false);
+                footEmissions.rateOverTime = 0f;
+            }
         }
     }
-}
-
 
     private void FlipSprite(float direction)
     {
@@ -273,6 +275,14 @@ public void SetAnimations()
         else if (direction < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "killzone")
+        {
+            GameManager.instance.Death();
         }
     }
 }

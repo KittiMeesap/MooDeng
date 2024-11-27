@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class pickup : MonoBehaviour
@@ -15,14 +16,13 @@ public class pickup : MonoBehaviour
         {
             if(collision.gameObject.tag == "Player")
             {
+                SoundManager.instance.PlaySFX(SoundManager.instance.getCarrotClip);
                 GameManager.instance.IncrementCoinCount();
            
                 Instantiate(PickupEffect, transform.position, Quaternion.identity);
 
                 Destroy(this.gameObject,0f);
-                
             }
-           
         }
     }
 }

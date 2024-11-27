@@ -23,6 +23,7 @@ public class ExitTrigger : MonoBehaviour
 
     private IEnumerator LevelExit(GameObject player)
     {
+        SoundManager.instance.PlaySFX(SoundManager.instance.portalgoinClip);
         // เรียกใช้ FadeOutAndDeactivate เพื่อให้ Player ค่อยๆ หมุนและย่อขนาด
         CustomizableFadeScaleRotate fadeScaleRotate = player.GetComponent<CustomizableFadeScaleRotate>();
         fadeScaleRotate.FadeOutAndDeactivate();
