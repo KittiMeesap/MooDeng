@@ -31,11 +31,14 @@ public class RankUIManager : MonoBehaviour
         float currentPlayerTime = PlayerPrefs.GetFloat("CurrentPlayerTime", 0f);
 
         // กำหนดข้อมูลผู้เล่นปัจจุบันใน yourRankData
-        yourRankData.playerData = new PlayerData
+        if(yourRankData != null)
         {
-            playerName = currentPlayerName,
-            playerTime = currentPlayerTime
-        };
+            yourRankData.playerData = new PlayerData
+            {
+                playerName = currentPlayerName,
+                playerTime = currentPlayerTime
+            };
+        }
 
         // เคลียร์ข้อมูลใน rankPanel ก่อน
         ClearRankData();

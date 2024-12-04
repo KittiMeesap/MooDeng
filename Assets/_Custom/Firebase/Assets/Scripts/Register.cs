@@ -34,6 +34,24 @@ public class Register : MonoBehaviour
         }
     }
 
+    public void OnGuest()
+    {
+        // สร้างเลขสุ่ม 5 หลัก
+        int randomNum = Random.Range(10000, 99999);  // เลขสุ่มระหว่าง 10000 ถึง 99999
+
+        // ตั้งค่าชื่อผู้เล่นเป็น "Guest" ตามด้วยเลขสุ่ม
+        string guestName = "Guest" + randomNum.ToString();
+
+        // บันทึกชื่อผู้เล่นที่เป็น Guest ลงใน PlayerPrefs
+        PlayerPrefs.SetString("PlayerName", guestName);
+        PlayerPrefs.Save();
+
+        welcometext.text = "Welcome " + guestName + "! Logging you in...";
+
+        StartCoroutine(WaitAndChangeScene());
+    }
+
+
     public void OnLogin()
     {
         if (!string.IsNullOrEmpty(loginemail.text) && !string.IsNullOrEmpty(loginpassword.text))
@@ -78,5 +96,11 @@ public class Register : MonoBehaviour
         yield return new WaitForSeconds(3f); // รอ 3 วินาที
         welcometext.text = "Loading menu..."; // แจ้งสถานะการเปลี่ยนซีน
         SceneManager.LoadScene("Menu"); // ใส่ชื่อซีนที่ต้องการจะเปลี่ยน
+    }
+
+    private void Awake()
+    {
+        SoundManager.instance.PlaySFX(SoundManager.instance.welcomeClip);
+        SoundManager.instance.PlayBGM(SoundManager.instance.soundtrackClip);
     }
 }

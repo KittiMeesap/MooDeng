@@ -263,9 +263,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnPlayerFinish()
+
+    public void OnTimeStatus(bool status)
     {
-        isTiming = false; // หยุดการนับเวลาหากผู้เล่นจบเลเวล
+        isTiming = status;
     }
 }
 

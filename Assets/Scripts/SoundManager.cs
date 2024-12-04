@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip soundtrackClip;
     public AudioClip portalopenClip;
     public AudioClip portalgoinClip;
+    public AudioClip welcomeClip;
 
     private void Awake()
     {

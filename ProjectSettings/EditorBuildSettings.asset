@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IAPWorkshop.unity
     guid: b42cbcd85e031024ca2b0e9c18ae7af6
+  - enabled: 1
+    path: Assets/Scenes/MenuLeaderboard.unity
+    guid: f4709351e6577224284a23709b5ab5b4
   m_configObjects: {}
